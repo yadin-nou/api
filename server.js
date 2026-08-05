@@ -11,16 +11,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/api/v1/users", userRouter);
 
-// app.use("/", (req, res) => {
-//   res.json({
-//     status: "sucess",
-//     message: "todo",
-//   });
-// });
-// app.get("/", (req, res) => {
-//   console.log(req.body);
-// });
-
 app.listen(PORT, (error) => {
   error ? console.log(error) : console.log("http://localhost:" + PORT);
 });

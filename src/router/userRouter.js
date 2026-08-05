@@ -2,7 +2,6 @@ import express from "express";
 const userRouter = express.Router();
 let fakeDB = [];
 userRouter.get("/", (req, res) => {
-  //console.log(fakeDB);
   res.status(201).json({
     task: fakeDB,
     sucess: "sucesss",
