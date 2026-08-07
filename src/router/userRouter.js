@@ -1,39 +1,42 @@
 import express from "express";
 const userRouter = express.Router();
-//let fakeDB = [];
-userRouter.get("/", (req, res) => {
+import mongoose from "mongoose";
+
+//database table select
+const taskSchema = new mongoose.Schema({}, { strict: false });
+const taskCollection = mongoose.model("task", taskSchema);
+
+userRouter.get("/", async (req, res) => {
+  const tasks = await taskCollection.find();
   res.status(201).json({
-    task: [],
+    tasks,
     sucess: "sucesss",
     message: "To do Get",
   });
 });
 
-userRouter.post("/", (req, res) => {
-  //const taskList = { id: fakeDB.length + 1, ...req.body };
-  //fakeDB.push(req.body);
+userRouter.post("/", async (req, res) => {
+  const result = await taskCollection(req.body).save();
   res.status(201).json({
     sucess: "sucess",
-    message: "Task added",
+    message: "Task added to database",
   });
 });
 
-userRouter.delete("/{:id}", (req, res) => {
+userRouter.delete("/{:_id}", async (req, res) => {
   //+ convert from string to number
-  const id = +req.params.id;
-  // fakeDB = fakeDB.filter((task) => task.id !== id);
-  //console.log(fakeDB, id);
+  // const id = +req.params.id;
+  const { _id } = req.params;
+  const result = await taskCollection.findByIdAndDelete(_id);
   res.status(201).json({
     sucess: "sucess",
     message: "delete sucessfully",
   });
 });
 
-userRouter.patch("/", (req, res) => {
-  // fakeDB = fakeDB.filter((item) => {
-  //   return item.id === +req.body.id ? (item.type = req.body.type) : item;
-  // });
-  // console.log(fakeDB);
+userRouter.patch("/", async (req, res) => {
+  const { _id, ...rest } = req.body;
+  const result = await taskCollection.findByIdAndUpdate(_id, rest);
   res.status(201).json({
     sucess: "sucess",
     message: "task updated",
