@@ -11,8 +11,8 @@ Content-Type: application/json
 
 {
 "task":"shopping",
-"housr":20,
-"type":"entry"
+"hours":20,
+"type":"bad"
 }
 
 

@@ -3,7 +3,27 @@ const userRouter = express.Router();
 import mongoose from "mongoose";
 
 //database table select
-const taskSchema = new mongoose.Schema({}, { strict: false });
+const taskSchema = new mongoose.Schema({
+  task: {
+    type: String,
+    required: true,
+  },
+  hours: {
+    type: Number,
+    required: true,
+    min: 1,
+    // max: 100,
+    //we can overight message error message
+    max: [100, "Are you sure for too much hours?"],
+  },
+  type: {
+    type: String,
+    default: "entry",
+    //this field is default entry,
+    //the field must be entry or bad
+    enum: ["entry", "bad"],
+  },
+});
 const taskCollection = mongoose.model("task", taskSchema);
 
 userRouter.get("/", async (req, res) => {
@@ -16,11 +36,18 @@ userRouter.get("/", async (req, res) => {
 });
 
 userRouter.post("/", async (req, res) => {
-  const result = await taskCollection(req.body).save();
-  res.status(201).json({
-    sucess: "sucess",
-    message: "Task added to database",
-  });
+  try {
+    const result = await taskCollection(req.body).save();
+    res.status(201).json({
+      sucess: "sucess",
+      message: "Task added to database",
+    });
+  } catch (error) {
+    res.status(201).json({
+      sucess: "error",
+      message: error.message,
+    });
+  }
 });
 
 userRouter.delete("/{:_id}", async (req, res) => {
