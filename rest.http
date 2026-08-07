@@ -10,14 +10,13 @@ POST {{baseURL}}
 Content-Type: application/json
 
 {
-"task":"shopping",
-"hours":20,
-"type":"bad"
+"task":"sleep",
+"hours":34
 }
 
 
 ### Delete the taks list
-DELETE  {{baseURL}}/6a762b24adf0a02eb8dc2387
+DELETE  {{baseURL}}/6a7635d2f4fe481645f9e7cf
 
 ### Update the taks list
 # PUT {{baseURL}}/1
@@ -31,7 +30,8 @@ PATCH {{baseURL}}
 Content-Type: application/json
 
 {
-    "_id":"6a762b24adf0a02eb8dc2387",
+    "_id":"6a7637304f13b41ac2d4259a",
+    "task":"study",
     "housr":15,
     "type":"bad"
 }

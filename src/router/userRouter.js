@@ -1,33 +1,14 @@
 import express from "express";
+import {
+  deleteTask,
+  getTasks,
+  insertTask,
+  updateTask,
+} from "../models/taskSchema.js";
 const userRouter = express.Router();
-import mongoose from "mongoose";
-
-//database table select
-const taskSchema = new mongoose.Schema({
-  task: {
-    type: String,
-    required: true,
-  },
-  hours: {
-    type: Number,
-    required: true,
-    min: 1,
-    // max: 100,
-    //we can overight message error message
-    max: [100, "Are you sure for too much hours?"],
-  },
-  type: {
-    type: String,
-    default: "entry",
-    //this field is default entry,
-    //the field must be entry or bad
-    enum: ["entry", "bad"],
-  },
-});
-const taskCollection = mongoose.model("task", taskSchema);
 
 userRouter.get("/", async (req, res) => {
-  const tasks = await taskCollection.find();
+  const tasks = await getTasks();
   res.status(201).json({
     tasks,
     sucess: "sucesss",
@@ -37,7 +18,8 @@ userRouter.get("/", async (req, res) => {
 
 userRouter.post("/", async (req, res) => {
   try {
-    const result = await taskCollection(req.body).save();
+    const result = await insertTask(req.body);
+    console.log(result);
     res.status(201).json({
       sucess: "sucess",
       message: "Task added to database",
@@ -54,7 +36,8 @@ userRouter.delete("/{:_id}", async (req, res) => {
   //+ convert from string to number
   // const id = +req.params.id;
   const { _id } = req.params;
-  const result = await taskCollection.findByIdAndDelete(_id);
+  const result = await deleteTask(_id);
+  console.log(result);
   res.status(201).json({
     sucess: "sucess",
     message: "delete sucessfully",
@@ -63,7 +46,8 @@ userRouter.delete("/{:_id}", async (req, res) => {
 
 userRouter.patch("/", async (req, res) => {
   const { _id, ...rest } = req.body;
-  const result = await taskCollection.findByIdAndUpdate(_id, rest);
+  const result = await updateTask(_id, rest);
+  console.log(result);
   res.status(201).json({
     sucess: "sucess",
     message: "task updated",
