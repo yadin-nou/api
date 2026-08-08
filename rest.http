@@ -1,5 +1,5 @@
 # Not to do List api
-@baseURL=http://localhost:8000/api/v1/users
+@baseURL=http://localhost:8000/api/v1/tasks
 ### GET the taks list
 GET {{baseURL}}
  
@@ -10,8 +10,8 @@ POST {{baseURL}}
 Content-Type: application/json
 
 {
-"task":"sport",
-"hours":34
+"task":"happy",
+"hour":34
 }
 
 
@@ -32,6 +32,6 @@ Content-Type: application/json
 {
     "_id":"6a7637304f13b41ac2d4259a",
     "task":"study",
-    "housr":15,
+    "hour":15,
     "type":"bad"
 }

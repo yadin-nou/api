@@ -20,6 +20,7 @@ userRouter.post("/", async (req, res) => {
   try {
     const result = await insertTask(req.body);
     console.log(result);
+
     res.status(201).json({
       sucess: "sucess",
       message: "Task added to database",
