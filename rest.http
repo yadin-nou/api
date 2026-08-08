@@ -10,7 +10,7 @@ POST {{baseURL}}
 Content-Type: application/json
 
 {
-"task":"sleep",
+"task":"sport",
 "hours":34
 }
 
