@@ -8,26 +8,45 @@ import {
 const userRouter = express.Router();
 
 userRouter.get("/", async (req, res) => {
-  const tasks = await getTasks();
-  res.status(200).json({
-    tasks,
-    sucess: "sucesss",
-    message: "To do Get",
-  });
+  try {
+    const tasks = await getTasks();
+    tasks
+      ? res.status(200).json({
+          task: tasks,
+          status: "sucess",
+          message: "Fetch data sucessfully",
+        })
+      : res.status(200).json({
+          status: "error",
+          message: "Fetch data unsucessfully",
+        });
+  } catch (error) {
+    res.status(200).json({
+      status: "sucess",
+      message: error.message,
+    });
+  }
 });
 
 userRouter.post("/", async (req, res) => {
   try {
     const result = await insertTask(req.body);
-    console.log(result);
-
-    res.status(201).json({
-      sucess: "sucess",
-      message: "Task added to database",
-    });
+    //     The ?. checks: "is the thing on the left (result) null or undefined?"
+    // If yes → stop immediately and return undefined, without even trying to read _id.
+    // If no → go ahead and read result._id normally. and _id will respons sucess message
+    //or error message
+    result?._id
+      ? res.status(201).json({
+          status: "sucess",
+          message: "Task added sucessfuly",
+        })
+      : res.status(201).json({
+          status: "erorr",
+          message: "Error add to database",
+        });
   } catch (error) {
     res.status(201).json({
-      sucess: "error",
+      status: "error",
       message: error.message,
     });
   }
@@ -46,12 +65,24 @@ userRouter.delete("/{:_id}", async (req, res) => {
 });
 
 userRouter.patch("/", async (req, res) => {
-  const { _id, ...rest } = req.body;
-  const result = await updateTask(_id, rest);
-  console.log(result);
-  res.status(200).json({
-    sucess: "sucess",
-    message: "task updated",
-  });
+  try {
+    const { _id, ...rest } = req.body;
+    const result = await updateTask(_id, rest);
+    console.log(result);
+    result?._id
+      ? res.status(200).json({
+          status: "sucess",
+          message: "swich task sucessfully.",
+        })
+      : res.status(200).json({
+          status: "error",
+          message: "switch task unsucessfully",
+        });
+  } catch (error) {
+    res.status(200).json({
+      status: "sucess",
+      message: error.message,
+    });
+  }
 });
 export default userRouter;
