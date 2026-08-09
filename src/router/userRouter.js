@@ -67,10 +67,12 @@ userRouter.delete("/{:_id}", async (req, res) => {
 userRouter.patch("/", async (req, res) => {
   try {
     const { _id, ...rest } = req.body;
+    //console.log(req.body);
     const result = await updateTask(_id, rest);
     console.log(result);
     result?._id
       ? res.status(200).json({
+          task: result,
           status: "sucess",
           message: "swich task sucessfully.",
         })
