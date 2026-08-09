@@ -69,16 +69,15 @@ userRouter.patch("/", async (req, res) => {
     const { _id, ...rest } = req.body;
     //console.log(req.body);
     const result = await updateTask(_id, rest);
-    console.log(result);
+    //console.log(result);
     result?._id
       ? res.status(200).json({
-          task: result,
           status: "sucess",
-          message: "swich task sucessfully.",
+          message: "Switch task sucessfully.",
         })
       : res.status(200).json({
           status: "error",
-          message: "switch task unsucessfully",
+          message: "Switch task unsucessfully",
         });
   } catch (error) {
     res.status(200).json({
