@@ -52,16 +52,36 @@ userRouter.post("/", async (req, res) => {
   }
 });
 
-userRouter.delete("/{:_id}", async (req, res) => {
+// userRouter.delete("/{:_id}", async (req, res) => {
+//   //+ convert from string to number
+//   // const id = +req.params.id;
+//   const { _id } = req.params;
+//   const result = await deleteTask(_id);
+//   console.log(result);
+//   res.status(200).json({
+//     sucess: "sucess",
+//     message: "delete sucessfully",
+//   });
+// });
+
+userRouter.delete("/", async (req, res) => {
   //+ convert from string to number
   // const id = +req.params.id;
-  const { _id } = req.params;
-  const result = await deleteTask(_id);
-  console.log(result);
-  res.status(200).json({
-    sucess: "sucess",
-    message: "delete sucessfully",
-  });
+  //const { _id } = req.params;
+  //const result = await deleteTask(_id);
+  try {
+    const results = await Promise.all(req.body.map((item) => deleteTask(item)));
+    res.status(200).json({
+      status: "sucess",
+      message: "Deleted successfully",
+      results,
+    });
+  } catch (error) {
+    res.status(500).json({
+      staus: "error",
+      message: error.message,
+    });
+  }
 });
 
 userRouter.patch("/", async (req, res) => {
