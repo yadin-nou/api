@@ -51,7 +51,7 @@ userRouter.post("/", async (req, res) => {
     });
   }
 });
-
+/* ### Delete with param */
 // userRouter.delete("/{:_id}", async (req, res) => {
 //   //+ convert from string to number
 //   // const id = +req.params.id;
@@ -63,19 +63,37 @@ userRouter.post("/", async (req, res) => {
 //     message: "delete sucessfully",
 //   });
 // });
+/* ### Delete with Promise.all () and using map */
+// userRouter.delete("/", async (req, res) => {
+//   try {
+//     const results = await Promise.all(req.body.map((item) => deleteTask(item)));
+//     res.status(200).json({
+//       status: "sucess",
+//       message: "Deleted successfully",
+//       results,
+//     });
+//   } catch (error) {
+//     res.status(500).json({
+//       status: "error",
+//       message: error.message,
+//     });
+//   }
+// });
 
+/* ### Delete using deleteMany */
 userRouter.delete("/", async (req, res) => {
-  //+ convert from string to number
-  // const id = +req.params.id;
-  //const { _id } = req.params;
-  //const result = await deleteTask(_id);
   try {
-    const results = await Promise.all(req.body.map((item) => deleteTask(item)));
-    res.status(200).json({
-      status: "sucess",
-      message: "Deleted successfully",
-      results,
-    });
+    const result = await deleteTask(req.body);
+    result?.deletedCount
+      ? res.status(200).json({
+          status: "sucess",
+          message: "Delete sucessfuly",
+          count: result.deletedCount,
+        })
+      : res.status(200).json({
+          status: "erorr",
+          message: "Error Deleting data",
+        });
   } catch (error) {
     res.status(500).json({
       status: "error",

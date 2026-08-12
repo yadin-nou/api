@@ -33,8 +33,12 @@ export const insertTask = (taskObj) => {
 export const getTasks = () => {
   return taskCollection.find();
 };
-export const deleteTask = (_id) => {
-  return taskCollection.findByIdAndDelete(_id);
+/* ### Delete with Promise.all () and using map */
+// export const deleteTask = (_id) => {
+//   return taskCollection.findByIdAndDelete(_id);
+// };
+export const deleteTask = (_ids) => {
+  return taskCollection.deleteMany({ _id: { $in: _ids } });
 };
 export const updateTask = (_id, rest) => {
   return taskCollection.findByIdAndUpdate(_id, rest);
