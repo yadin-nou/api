@@ -78,7 +78,7 @@ userRouter.delete("/", async (req, res) => {
     });
   } catch (error) {
     res.status(500).json({
-      staus: "error",
+      status: "error",
       message: error.message,
     });
   }
