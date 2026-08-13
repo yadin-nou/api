@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 // const mongoLink = "mongodb://127.0.0.1:27017/task_ntdl";
-const mongoLink =
-  "mongodb+srv://nouyadin_db_user:RUkYoUGpU3N4SBty@online-db.izzxdtk.mongodb.net/?appName=Online-db";
+const mongoLink = process.env.MONGO_URL;
 
 export const connectMongoDB = async () => {
   try {
