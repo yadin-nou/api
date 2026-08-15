@@ -71,7 +71,7 @@ To set up this project in your device locally, please follow the steps:
 ## Project Structure
 
 ```
-movie-world
+NOT TO DO LIST Projects
 |-- public
 |-- src
 | |-- config
