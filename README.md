@@ -20,7 +20,7 @@ which send request from API to server express.js
 
 ## Introduction
 
-This project is build with Node.js, express.js and deployed via GitHub.
+This project is build with React JS,Node.js+express.js, MongoDB and deployed via GitHub.
 
 [Visit Live Website](https://movie-world-sooty.vercel.app/)
 
@@ -31,7 +31,7 @@ This project is build with Node.js, express.js and deployed via GitHub.
 ## Technologies used
 
 - ## **Frontend**:
-  -
+  - REACT JS,HTML, CSS, Bootstrap and Javascript
 - **REST API**:
   - Postman for tesing
   - REST extention install in VS-code

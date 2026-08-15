@@ -13,9 +13,9 @@ connectMongoDB();
 app.use(cors());
 //morgan to tell http reqest path you send in console
 app.use(morgan("tiny"));
-//use for json data req.query
+//use for json data req.body
 app.use(express.json());
-//use for form submit req.body
+//use for html form submit req.query
 app.use(express.urlencoded({ extended: true }));
 //static servering path
 import path from "path";
