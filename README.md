@@ -4,7 +4,7 @@ Welcome to the REST API CRUD.
 This project is used for testing API create,read,update and delete data
 which send request from API to server express.js
 
-![Websute Screenshort]()
+![Websute Screenshort](./src/lay1.png)
 
 ## Table of Contents
 
