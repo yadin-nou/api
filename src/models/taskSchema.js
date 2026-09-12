@@ -12,7 +12,7 @@ const taskSchema = new mongoose.Schema(
       required: true,
       min: 1,
       // max: 100,
-      //we can overight message error message
+      //we can override message error message
       max: [100, "Are you sure for too much hours?"],
     },
     type: {
