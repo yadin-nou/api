@@ -10,6 +10,7 @@ const userRouter = express.Router();
 userRouter.get("/", async (req, res) => {
   try {
     const tasks = await getTasks();
+
     tasks
       ? res.status(200).json({
           task: tasks,
