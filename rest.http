@@ -1,8 +1,13 @@
 # Not to do List api
 @baseURL=http://localhost:8000/api/v1/tasks
+@serverURL=https://full-stack-development-mern-r34r.onrender.com/api/v1/tasks
+
 ### GET the taks list
 GET {{baseURL}}
  
+### GET the taks list from render server
+GET {{serverURL}}
+  
 
  
 ### POST the tasks list
