@@ -1,8 +1,15 @@
-# RESTFull API CRUD
+# Not To Do List
 
-Welcome to the REST API CRUD.
-This project is used for testing API create,read,update and delete data
-which send request from API to server express.js
+Welcome to the Full-Stack Not To Do List!
+
+This project helps people manage their time by distinguishing productive activities from wasted time, so they can invest their hours in what really matters.
+
+## Tech Stack
+
+- **Frontend:** React.js
+- **Backend:** Node.js with Express.js
+- **Database:** MongoDB (NoSQL)
+- **API:** RESTful API supporting full CRUD operations (create, read, update, and delete)
 
 ![Websute Screenshort](./src/lay1.png)
 
